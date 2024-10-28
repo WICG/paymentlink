@@ -1,0 +1,105 @@
+# [Self-Review Questionnaire: Security and Privacy](https://w3ctag.github.io/security-questionnaire/)
+
+> 01.  What information does this feature expose,
+>      and for what purposes?
+
+Payment Link URI is exposed. This includes the scheme (e.g., upi, bitcoin, paypal) and potentially other parameters embedded in the URI, such as payee address, amount, and currency. This information is necessary to identify the payment method and initiate the transaction.
+
+Purposes of Exposing the Information:
+- Payment Initiation: The primary purpose is to allow payment clients (browser extensions or integrated wallets) to detect and handle supported payment methods, streamlining the payment process for users.
+- Validation: The browser uses the information in the payment link URI to validate the payment method and ensure it's supported before prompting the user.
+- User Choice: By exposing the payment link information, the browser can present the user with a choice of available payment options, allowing them to select their preferred method.
+
+The privacy implications of this are discussed [in the explainer](./docs/explainer.md#privacy-considerations).
+
+> 02.  Do features in your specification expose the minimum amount of information
+>      necessary to implement the intended functionality?
+
+Yes it is. The only information exposed is the payment link URI itself.
+
+The URI should contain the essential details required for the browser and payment clients to:
+- Identify the payment method: The URI scheme indicates the specific payment system being used (e.g., UPI, Bitcoin).
+- Initiate the payment: The URI may include parameters like payee address, amount, and currency, which are necessary to start the transaction.   
+- Validate the payment method: The browser uses the URI to check if the payment method is supported before prompting the user.
+
+> 03.  Do the features in your specification expose personal information,
+>      personally-identifiable information (PII), or information derived from
+>      either?
+
+No. Although the payment link URI may include parameters like payee address, amount, and currency, none of them belongs to above categories.
+
+> 04.  How do the features in your specification deal with sensitive information?
+
+The feature does not deal with sensitive information.
+
+> 05.  Do the features in your specification introduce state
+>      that persists across browsing sessions?
+
+No. The feature operates in a stateless manner.
+
+> 06.  Do the features in your specification expose information about the
+>      underlying platform to origins?
+
+No.
+
+> 07.  Does this specification allow an origin to send data to the underlying
+>      platform?
+
+Yes. The specification allows origins to send data to the platform only within the well-defined context of payment initiation, with user consent and security measures in place.
+
+> 08.  Do features in this specification enable access to device sensors?
+
+No.
+
+> 09.  Do features in this specification enable new script execution/loading
+>      mechanisms?
+
+No.
+
+> 10.  Do features in this specification allow an origin to access other devices?
+
+No.
+
+> 11.  Do features in this specification allow an origin some measure of control over
+>      a user agent's native UI?
+
+Possibly. When a valid payment link is detected, the browser may present a native UI to the user, allowing them to choose their preferred payment method or confirm the transaction. In this sense, the origin indirectly triggers the display of this UI by providing the payment link.
+
+> 12.  What temporary identifiers do the features in this specification create or
+>      expose to the web?
+
+None.
+
+> 13.  How does this specification distinguish between behavior in first-party and
+>      third-party contexts?
+
+It does not currently distinguish. The security measures (HTTPS, validation, etc.) apply regardless of the context, ensuring that payment links are handled securely in both cases.
+
+> 14.  How do the features in this specification work in the context of a browser’s
+>      Private Browsing or Incognito mode?
+
+The functionality remains. We didn't anticipate different behaviors.
+
+> 15.  Does this specification have both "Security Considerations" and "Privacy
+>      Considerations" sections?
+
+There is no specification yet, but there is a [security considerations](./docs/explainer.md#security-considerations) and a [privacy considerations](./docs/explainer.md#privacy-considerations) section in the explainer.
+
+> 16.  Do features in your specification enable origins to downgrade default
+>      security protections?
+
+No.
+
+> 17.  What happens when a document that uses your feature is kept alive in BFCache
+>      (instead of getting destroyed) after navigation, and potentially gets reused
+>      on future navigations back to the document?
+
+The payment link detection happens during the DOM construction. Depends on the implementation by browsers, the push payment flow can be triggered again with users' consent.
+
+> 18.  What happens when a document that uses your feature gets disconnected?
+
+The push payment flow should fail. Browsers should handle the disconnection error gracefully.
+
+> 19.  What should this questionnaire have asked?
+
+Seems fine.
