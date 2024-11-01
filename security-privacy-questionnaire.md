@@ -3,7 +3,7 @@
 > 01.  What information does this feature expose,
 >      and for what purposes?
 
-Payment Link URI is exposed by the website, and will be received by payment clients. This includes the scheme (e.g., upi, bitcoin, paypal) and other parameters embedded in the URI, such as payee address, amount, and currency. This information is necessary to identify the payment method and prompt the user to initiate a transaction.
+Payment Link URIs are exposed by websites and received by payment clients, which are either integrated wallets within the user agent or vetted browser extensions installed by the user. These URIs include a scheme (e.g., upi, bitcoin, paypal) and parameters like payee address, amount, and currency. This information is necessary for the user agent to identify the payment method, initiate payment, and offer users payment options. The user agent mediates access to this information, giving users control over which payment clients are active and can access payment links through browser settings. The user agent will clearly indicate when a payment link is detected and which payment client can handle it, ensuring user awareness and consent. Payment clients are linked and authorized to be used through the user agent.
 
 Purposes of Exposing the Information:
 - Payment Initiation: The primary purpose is to allow payment clients (the wallet being used by the user agent") to handle supported payment methods, streamlining the payment process for users.
