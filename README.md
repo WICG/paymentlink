@@ -64,7 +64,7 @@ The merchant or payment processor can embed this link in the relevant payment pa
 7. The payment client initiates a payment through the underlying payment processor.
 7. The payment processor notifies the merchant and the merchant displays a payment confirmation.
 
-![Payment sequence](./images/payment-link-sequence.png)
+![Payment sequence](./docs/images/payment-link-sequence.png)
 
 ### Example "payment" links
 The examples listed below are only meant to illustrate the usage of payment links, with the help of some commonly known payment methods. The URI specification for various payment methods is out of scope of this proposal.
