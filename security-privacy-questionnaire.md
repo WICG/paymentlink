@@ -3,7 +3,7 @@
 > 01.  What information does this feature expose,
 >      and for what purposes?
 
-Payment Link URIs are exposed by websites and received by payment clients, which are either integrated wallets within the user agent or vetted browser extensions installed by the user. These URIs include a scheme (e.g., upi, bitcoin, paypal) and parameters like payee address, amount, and currency. This information is necessary for the user agent to identify the payment method, initiate payment, and offer users payment options. The user agent mediates access to this information, giving users control over which payment clients are active and can access payment links through browser settings. The user agent will clearly indicate when a payment link is detected and which payment client can handle it, ensuring user awareness and consent. Payment clients are linked and authorized to be used through the user agent.
+Payment Link URIs are exposed by websites and received by payment clients, which are either integrated wallets within the user agent or opted in browser extensions installed by the user. These URIs include a scheme (e.g., upi, bitcoin, paypal) and parameters like payee address, amount, and currency. This information is necessary for the user agent to identify the payment method, offer users payment options and initiate payment. The user agent mediates access to this information, giving users control over which payment clients are active and can access payment links through browser settings. The user agent will clearly indicate when a payment link is detected and which payment client can handle it, ensuring user awareness and consent. Payment clients are linked and authorized to be used through the user agent.
 
 Purposes of Exposing the Information:
 - Payment Initiation: The primary purpose is to allow payment clients (the wallet being used by the user agent") to handle supported payment methods, streamlining the payment process for users.
@@ -63,7 +63,7 @@ No.
 > 11.  Do features in this specification allow an origin some measure of control over
 >      a user agent's native UI?
 
-Possibly. When a valid payment link is detected and the user has enabling this type of payment link by enrolling with their wallet, the user agent may present an UI to the user, allowing them to choose their preferred payment method or confirm the transaction. In this sense, the origin indirectly triggers the display of this UI by providing the payment link.
+Possibly. When a valid payment link is detected and the user has enabled this type of payment link by enrolling with their wallet, the user agent may present an UI to the user, allowing them to choose their preferred payment method and confirm the transaction. In this sense, the origin indirectly triggers the display of this UI by providing the payment link.
 
 > 12.  What temporary identifiers do the features in this specification create or
 >      expose to the web?
