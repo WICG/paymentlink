@@ -1,0 +1,114 @@
+<pre class='metadata'>
+Title: Payment Link Type in HTML
+Shortname: payment-link
+Level: 1
+Status: w3c/UD
+Repository: github.com/WICG/paymentlink
+URL: https://github.com/WICG/paymentlink
+Editor: Junhui He, Google https://google.com, junhuihe@google.com
+Abstract: This specification defines a mechanism for web pages to indicate the availability of push-based payment methods using the <{link}> element, enabling user agents to facilitate seamless payment experiences.
+Markup Shorthands: markdown yes, css no
+Complain About: accidental-2119 yes, missing-example-ids yes
+Assume Explicit For: yes
+Die On: warning
+WPT Path Prefix: payment-link
+WPT Display: closed
+Include MDN Panels: if possible
+Include Can I Use Panels: yes
+</pre>
+
+Introduction {#intro}
+=====================
+
+Online checkout flows often involve push payments, where the customer initiates the payment based on information provided by the merchant. These push payments can sometimes lead to friction in the user experience, especially when they involve actions like scanning QR codes or navigating to external payment applications.
+
+User agents, such as web browsers, have the potential to streamline these push payment flows by integrating with payment wallets and providing a more seamless payment experience. However, currently, there is no standardized way for web pages to passively indicate the availability of push payment methods to the user agent.
+
+This specification defines a mechanism for web pages to signal the availability of push-based payment methods by using the `<link rel="payment">` element. This allows user agents to detect supported payment methods and offer users a smoother payment experience by integrating with compatible payment wallets.
+
+For background information, use cases, and examples, refer to the [explainer document](https://github.com/WICG/paymentlink/blob/main/README.md).
+
+Definitions {#definitions}
+=====================
+
+This specification uses the following terms:
+
+* **Payment client:** An integrated wallet or a browser wallet extension that is responsible for facilitating payments.
+
+* **Payment method:** A specific way of making a payment, such as UPI, Bitcoin, or a particular eWallet.  It is identified by the URL [=url/scheme=] in the <{link/href}> attribute of a <{link/rel/payment}> link.
+
+
+
+Link type "<dfn attr-value for="link/rel">payment</dfn>" {#payment-link-type}
+===========================================
+
+The <{link/rel/payment}> keyword may be used with <{link}> elements. The keywords creates an [=external resource link=]. The keyword is [=body-ok=].
+
+The <{link/rel/payment}> keyword indicates the availability of a push payment method on a web page. It creates a relationship between the document and a payment method resource.
+
+There is no default type for resources given by the <{link/rel/payment}> keyword.
+
+A user agent must not [=delay the load event=] for this link type.
+
+The URL [=URL/scheme=] of the <{link/href}> attribute indicates supported payment methods. The URL may contain additional information specific to the payment method. 
+
+<div class="example" heading="UPI">
+  <p><code class="html">&lt;link rel="payment" href="upi://pay?pa=merchant@bank&pn=Test&am=100&cu=INR"&gt;</code></p>
+</div>
+
+<div class="example" heading="Bitcoin">
+  <p><code class="html">&lt;link rel="payment" href="bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=20.3&label=Donation"&gt;</code></p>
+</div>
+
+<div class="example" heading="PayPal">
+  <p><code class="html">&lt;link rel="payment" href="paypal://paypal.com?payee-address=175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W&currency=USD&amount=20.3&payee-name=Walmart"&gt;</code></p>
+</div>
+
+The appropriate times to <a spec="HTML">fetch and process the linked resource</a> for such a link are:
+
+* When the [=external resource link=] is created on a <{link}> element that is already [=browsing-context connected=].
+* When the [=external resource link=]'s <{link}> element becomes [=browsing-context connected=].
+* When the <{link/href}> attribute of the <{link}> element of an [=external resource link=] that is already [=browsing-context connected=] is changed.
+
+The [fetch and process the linked resource](https://html.spec.whatwg.org/multipage/semantics.html#fetch-and-process-the-linked-resource) algorithm for <{link/rel/payment}> links, given a <{link}> element |el|, is as follows:
+
+1. If |el|'s [=relevant settings object=] is not a [=secure context=], then return.
+2. If |el|'s [=node navigable=] is not a [=top-level traversable=], then return.
+3. If |el|’s [=Node/node document=] is not [=allowed to use=] the “payment” feature, then return.
+4. If |el|'s <{link/href}> attribute's value is the empty string, then return.
+5. Let |url| be the result of [=encoding-parsing a URL=] given |el|'s <{link/href}> attribute's value, relative to |el|'s [=Node/node document=].
+6. If |url| is failure, then return.
+7. If |url|’s [=url/scheme=] is not supported by the user agent, then return.
+8. Find all payment wallets integrated with the user agent which are compatible with |url|'s [=scheme=]. Let |compatibleWallets| be a [=/set=] containing all such wallets.
+9. If |compatibleWallets|'s [=set/size=] is 0, then return.
+10. Prompt the user with a wallet selector containing |compatibleWallets| for users to choose the payment method they want to use.
+11. If the wallet selector is dismissed, then return.
+12. Hands off |url| to OS component or browser extension to display a payment confirmation dialog that includes details from the |url|, such as the payment amount, payee, and currency.
+13. (Optional) Launch the selected wallet application or interface.
+14. Provide instructions to the user on how to proceed with the payment.
+
+
+Security Considerations {#security-considerations}
+=================================================
+
+There is a possibility of malicious actors injecting their own <{link/rel/payment}> links into web pages and tricking the users into paying them. Standard safety checks done by browsers will offer some level of protection against such attacks.
+
+**Per the algorithm given above, the <{link/rel/payment}> link needs to be on on a page with the following properties:**
+
+* **Cryptographic [=url/scheme=] (e.g., HTTPS. One exception being localhost).
+* **Valid SSL (no expired cert).
+* **No mixed content (i.e., all sub-resources must come from HTTPS).
+* **Only on top-level context (not inside of an iframe).
+* **The tab is active.
+* **No Permissions-Policy restrictions on the "payments" feature. (i.e., pages can disable <{link/rel/payment}> links via Permissions-Policy: payment=() HTTP header.)
+
+Also, as mentioned in the previous section, the detected <{link/rel/payment}> link needs to be validated before further processing.
+
+Privacy Considerations {#privacy-considerations}
+===============================================
+
+A malicious payment client could use the existence of <{link/rel/payment}> links to track the user. This is an existing concern with e.g., extension based apps (which often ask for permission to view all webpages the user visits), but should be considered for this proposal too.
+
+Browsers should manage payment clients with care; users should be made aware of the risks and be given control over the payment clients in their browser. Certain privacy savvy users may prefer not to let the payment clients get access to their payment info even if they may not contain any sensitive data. Where appropriate, a user agent might consider policies around how a payment client can be integrated with (for example, via apps store policies on platforms that have app stores).
+
+The user agent should prompt the user before initiating payment. User consent is required every time.
