@@ -54,15 +54,15 @@ A user agent must not <a href="https://html.spec.whatwg.org/multipage/syntax.htm
 The URL [=url/scheme=] of the <{link/href}> attribute indicates supported payment methods. The URL may contain additional information specific to the payment method. 
 
 <div class="example" id="example-upi" heading="UPI">
-    <p><code class="html">&lt;link rel="payment" href="upi://pay?pa=merchant@bank&amp;pn=Test&amp;am=100&amp;cu=INR"&gt;</code></p>
+<p><code class="html">&lt;link rel="payment" href="upi://pay?pa=merchant@bank&amp;pn=Test&amp;am=100&amp;cu=INR"&gt;</code></p>
 </div>
 
 <div class="example" id="example-bitcoin" heading="Bitcoin">
-    <p><code class="html">&lt;link rel="payment" href="bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=20.3&amp;label=Donation"&gt;</code></p>
+<p><code class="html">&lt;link rel="payment" href="bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=20.3&amp;label=Donation"&gt;</code></p>
 </div>
 
 <div class="example" id="example-paypal" heading="PayPal">
-    <p><code class="html">&lt;link rel="payment" href="paypal://paypal.com?payee-address=175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W&amp;currency=USD&amp;amount=20.3&amp;payee-name=Walmart"&gt;</code></p>
+<p><code class="html">&lt;link rel="payment" href="paypal://paypal.com?payee-address=175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W&amp;currency=USD&amp;amount=20.3&amp;payee-name=Walmart"&gt;</code></p>
 </div>
 
 The appropriate times to <a spec="HTML">fetch and process the linked resource</a> for such a link are:
