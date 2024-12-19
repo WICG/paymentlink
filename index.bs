@@ -17,6 +17,10 @@ Include MDN Panels: if possible
 Include Can I Use Panels: yes
 </pre>
 
+<pre class="link-defaults">
+spec:html; type:element; text:link
+</pre>
+
 Introduction {#intro}
 =====================
 
@@ -42,15 +46,15 @@ This specification uses the following terms:
 Link type "<dfn attr-value for="link/rel">payment</dfn>" {#payment-link-type}
 ===========================================
 
-The <{link/rel/payment}> keyword may be used with <{link}> elements. The keywords creates an [=external resource link=]. The keyword is [=body-ok=].
+The <{link/rel/payment}> keyword may be used with <{link}> elements. The keywords creates an [=external resource link=]. The keyword is <a spec=HTML>body-ok</a>.
 
 The <{link/rel/payment}> keyword indicates the availability of a push payment method on a web page. It creates a relationship between the document and a payment method resource.
 
 There is no default type for resources given by the <{link/rel/payment}> keyword.
 
-A user agent must not [=delay the load event=] for this link type.
+A user agent must not <a href="https://html.spec.whatwg.org/multipage/syntax.html#delay-the-load-event">delay the load event</a> for this link type.
 
-The URL [=URL/scheme=] of the <{link/href}> attribute indicates supported payment methods. The URL may contain additional information specific to the payment method. 
+The URL [=url/scheme=] of the <{link/href}> attribute indicates supported payment methods. The URL may contain additional information specific to the payment method. 
 
 <div class="example" heading="UPI">
   <p><code class="html">&lt;link rel="payment" href="upi://pay?pa=merchant@bank&pn=Test&am=100&cu=INR"&gt;</code></p>
@@ -79,7 +83,7 @@ The [fetch and process the linked resource](https://html.spec.whatwg.org/multipa
 5. Let |url| be the result of [=encoding-parsing a URL=] given |el|'s <{link/href}> attribute's value, relative to |el|'s [=Node/node document=].
 6. If |url| is failure, then return.
 7. If |url|’s [=url/scheme=] is not supported by the user agent, then return.
-8. Find all payment wallets integrated with the user agent which are compatible with |url|'s [=scheme=]. Let |compatibleWallets| be a [=/set=] containing all such wallets.
+8. Find all payment wallets integrated with the user agent which are compatible with |url|'s [=url/scheme=]. Let |compatibleWallets| be a [=/set=] containing all such wallets.
 9. If |compatibleWallets|'s [=set/size=] is 0, then return.
 10. Prompt the user with a wallet selector containing |compatibleWallets| for users to choose the payment method they want to use.
 11. If the wallet selector is dismissed, then return.
