@@ -10,7 +10,6 @@ Abstract: This specification defines a mechanism for web pages to indicate the a
 Markup Shorthands: markdown yes, css no
 Complain About: accidental-2119 yes, missing-example-ids yes
 Assume Explicit For: yes
-Die On: warning
 WPT Path Prefix: payment-link
 WPT Display: closed
 Include MDN Panels: if possible
