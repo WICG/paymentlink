@@ -41,8 +41,6 @@ This specification uses the following terms:
 
 * **Payment method:** A specific way of making a payment, such as UPI, Bitcoin, or a particular eWallet. It is identified by the URL [=url/scheme=] in the <{link/href}> attribute of a <{link/rel/payment}> link.
 
-
-
 Link type "<dfn attr-value for="link/rel">payment</dfn>" {#payment-link-type}
 ===========================================
 
@@ -90,7 +88,6 @@ The [fetch and process the linked resource](https://html.spec.whatwg.org/multipa
 12. Hands off |url| to OS component or browser extension to display a payment confirmation dialog that includes details from the |url|, such as the payment amount, payee, and currency.
 13. (Optional) Launch the selected wallet application or interface.
 14. Provide instructions to the user on how to proceed with the payment.
-
 
 Security Considerations {#security-considerations}
 =================================================
