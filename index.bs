@@ -39,7 +39,7 @@ This specification uses the following terms:
 
 * **Payment client:** An integrated wallet or a browser wallet extension that is responsible for facilitating payments.
 
-* **Payment method:** A specific way of making a payment, such as UPI, Bitcoin, or a particular eWallet.  It is identified by the URL [=url/scheme=] in the <{link/href}> attribute of a <{link/rel/payment}> link.
+* **Payment method:** A specific way of making a payment, such as UPI, Bitcoin, or a particular eWallet. It is identified by the URL [=url/scheme=] in the <{link/href}> attribute of a <{link/rel/payment}> link.
 
 
 
