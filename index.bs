@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: Payment Link Type in HTML
+Title: Facilitated Payment Link Type in HTML
 Shortname: payment-link
 Level: 1
 Status: w3c/UD
@@ -27,7 +27,7 @@ Online checkout flows often involve push payments, where the customer initiates 
 
 User agents, such as web browsers, have the potential to streamline these push payment flows by integrating with payment wallets and providing a more seamless payment experience. However, currently, there is no standardized way for web pages to passively indicate the availability of push payment methods to the user agent.
 
-This specification defines a mechanism for web pages to signal the availability of push-based payment methods by using the `<link rel="payment">` element. This allows user agents to detect supported payment methods and offer users a smoother payment experience by integrating with compatible payment wallets.
+This specification defines a mechanism for web pages to signal the availability of push-based payment methods by using the `<link rel="facilitated-payment">` element. This allows user agents to detect supported payment methods and offer users a smoother payment experience by integrating with compatible payment wallets.
 
 For background information, use cases, and examples, refer to the [explainer document](https://github.com/WICG/paymentlink/blob/main/README.md).
 
@@ -38,31 +38,31 @@ This specification uses the following terms:
 
 * **Payment client:** An integrated wallet or a browser wallet extension that is responsible for facilitating payments.
 
-* **Payment method:** A specific way of making a payment, such as UPI, Bitcoin, or a particular eWallet. It is identified by the URL [=url/scheme=] in the <{link/href}> attribute of a <{link/rel/payment}> link.
+* **Payment method:** A specific way of making a payment, such as UPI, Bitcoin, or a particular eWallet. It is identified by the URL [=url/scheme=] in the <{link/href}> attribute of a <{link/rel/facilitated-payment}> link.
 
-Link type "<dfn attr-value for="link/rel">payment</dfn>" {#payment-link-type}
+Link type "<dfn attr-value for="link/rel">facilitated-payment</dfn>" {#facilitated-payment-link-type}
 ===========================================
 
-The <{link/rel/payment}> keyword may be used with <{link}> elements. The keywords creates an [=external resource link=]. The keyword is <a spec=HTML>body-ok</a>.
+The <{link/rel/facilitated-payment}> keyword may be used with <{link}> elements. The keywords creates an [=external resource link=]. The keyword is <a spec=HTML>body-ok</a>.
 
-The <{link/rel/payment}> keyword indicates the availability of a push payment method on a web page. It creates a relationship between the document and a payment method resource.
+The <{link/rel/facilitated-payment}> keyword indicates the availability of a push payment method on a web page. It creates a relationship between the document and a payment method resource.
 
-There is no default type for resources given by the <{link/rel/payment}> keyword.
+There is no default type for resources given by the <{link/rel/facilitated-payment}> keyword.
 
 A user agent must not <a href="https://html.spec.whatwg.org/multipage/syntax.html#delay-the-load-event">delay the load event</a> for this link type.
 
 The URL [=url/scheme=] of the <{link/href}> attribute indicates supported payment methods. The URL may contain additional information specific to the payment method. 
 
 <div class="example" id="example-upi" heading="UPI">
-  <p><code class="html">&lt;link rel="payment" href="upi://pay?pa=merchant@bank&amp;pn=Test&amp;am=100&amp;cu=INR"&gt;</code></p>
+  <p><code class="html">&lt;link rel="facilitated-payment" href="upi://pay?pa=merchant@bank&amp;pn=Test&amp;am=100&amp;cu=INR"&gt;</code></p>
 </div>
 
 <div class="example" id="example-bitcoin" heading="Bitcoin">
-  <p><code class="html">&lt;link rel="payment" href="bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=20.3&amp;label=Donation"&gt;</code></p>
+  <p><code class="html">&lt;link rel="facilitated-payment" href="bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=20.3&amp;label=Donation"&gt;</code></p>
 </div>
 
 <div class="example" id="example-paypal" heading="PayPal">
-  <p><code class="html">&lt;link rel="payment" href="paypal://paypal.com?payee-address=175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W&amp;currency=USD&amp;amount=20.3&amp;payee-name=Walmart"&gt;</code></p>
+  <p><code class="html">&lt;link rel="facilitated-payment" href="paypal://paypal.com?payee-address=175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W&amp;currency=USD&amp;amount=20.3&amp;payee-name=Walmart"&gt;</code></p>
 </div>
 
 The appropriate times to <a spec="HTML">fetch and process the linked resource</a> for such a link are:
@@ -71,7 +71,7 @@ The appropriate times to <a spec="HTML">fetch and process the linked resource</a
 * When the [=external resource link=]'s <{link}> element becomes [=browsing-context connected=].
 * When the <{link/href}> attribute of the <{link}> element of an [=external resource link=] that is already [=browsing-context connected=] is changed.
 
-The [fetch and process the linked resource](https://html.spec.whatwg.org/multipage/semantics.html#fetch-and-process-the-linked-resource) algorithm for <{link/rel/payment}> links, given a <{link}> element |el|, is as follows:
+The [fetch and process the linked resource](https://html.spec.whatwg.org/multipage/semantics.html#fetch-and-process-the-linked-resource) algorithm for <{link/rel/facilitated-payment}> links, given a <{link}> element |el|, is as follows:
 
 1. If |el|'s [=relevant settings object=] is not a [=secure context=], then return.
 2. If |el|'s [=node navigable=] is not a [=top-level traversable=], then return.
@@ -91,23 +91,23 @@ The [fetch and process the linked resource](https://html.spec.whatwg.org/multipa
 Security Considerations {#security-considerations}
 =================================================
 
-There is a possibility of malicious actors injecting their own <{link/rel/payment}> links into web pages and tricking the users into paying them. Standard safety checks done by browsers will offer some level of protection against such attacks.
+There is a possibility of malicious actors injecting their own <{link/rel/facilitated-payment}> links into web pages and tricking the users into paying them. Standard safety checks done by browsers will offer some level of protection against such attacks.
 
-**Per the algorithm given above, the <{link/rel/payment}> link needs to be on on a page with the following properties:**
+**Per the algorithm given above, the <{link/rel/facilitated-payment}> link needs to be on on a page with the following properties:**
 
 * **Cryptographic [=url/scheme=] (e.g., HTTPS. One exception being localhost).
 * **Valid SSL (no expired cert).
 * **No mixed content (i.e., all sub-resources must come from HTTPS).
 * **Only on top-level context (not inside of an iframe).
 * **The tab is active.
-* **No Permissions-Policy restrictions on the "payments" feature. (i.e., pages can disable <{link/rel/payment}> links via Permissions-Policy: payment=() HTTP header.)
+* **No Permissions-Policy restrictions on the "payments" feature. (i.e., pages can disable <{link/rel/facilitated-payment}> links via Permissions-Policy: payment=() HTTP header.)
 
-Also, as mentioned in the previous section, the detected <{link/rel/payment}> link needs to be validated before further processing.
+Also, as mentioned in the previous section, the detected <{link/rel/facilitated-payment}> link needs to be validated before further processing.
 
 Privacy Considerations {#privacy-considerations}
 ===============================================
 
-A malicious payment client could use the existence of <{link/rel/payment}> links to track the user. This is an existing concern with e.g., extension based apps (which often ask for permission to view all webpages the user visits), but should be considered for this proposal too.
+A malicious payment client could use the existence of <{link/rel/facilitated-payment}> links to track the user. This is an existing concern with e.g., extension based apps (which often ask for permission to view all webpages the user visits), but should be considered for this proposal too.
 
 Browsers should manage payment clients with care; users should be made aware of the risks and be given control over the payment clients in their browser. Certain privacy savvy users may prefer not to let the payment clients get access to their payment info even if they may not contain any sensitive data. Where appropriate, a user agent might consider policies around how a payment client can be integrated with (for example, via apps store policies on platforms that have app stores).
 
