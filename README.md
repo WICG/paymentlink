@@ -1,5 +1,5 @@
-# Support for Payment link type in HTML
-Last Update: August 24, 2023
+# Support for Facilitated Payment link type in HTML
+Last Update: Jan 13, 2025
 
 ## Authors:
 - Aneesh Ali Nainamvalappil Cheriyakath
@@ -22,12 +22,14 @@ Last Update: August 24, 2023
 - Microsoft Edge payment methods backed by Microsoft account (integrated wallet).
 - [MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) (browser wallet extension).
 
+### Payment link - A link element with "facilitated-payment" relationship.
+
 ## Introduction
 Online checkout flows can be broadly classified as push and pull payments\*. A push payment is initiated by the consumer based on information provided by the merchant, whereas a pull payment is initiated by the merchant and collects information from the user.
 
 Certain push payment flows can cause high friction for users (e.g. display of a QR code that the user needs to scan with an eWallet app). Browsers may have the ability to more easily facilitate these payment flows (e.g. if the user has a wallet installed on their device that supports the underlying payment method for the displayed QR, or has a browser extension for the supported eWallet). Currently there is no easy way for browsers to know *passively* if a particular payment method is being offered by the merchant. The *[Payment Request](https://w3c.github.io/payment-request/) API* exists, but it requires active integration (e.g., merchant must explicitly trigger the API, handle communication with it, etc).
 
-We believe there is benefit for a 'passive' method to allow browsers to detect push payment flows, to allow users of integrated wallets the option of a better experience. A solution is proposed below to standardize payment links that can be embedded in checkout pages to give an 'alternate' representation of the payment method(s) that the merchant is presenting (in addition to e.g., showing the user a visual QR code, or a login button for an eWallet). This can be accomplished by extending the [link data type](https://html.spec.whatwg.org/multipage/links.html#linkTypes) in HTML. Links are used to define relationships between a document and other resources. This explainer proposes adding a new link type, "payment", to the HTML specification. The "payment" link type would be used to indicate a resource that can be used to make a payment.
+We believe there is benefit for a 'passive' method to allow browsers to detect push payment flows, to allow users of integrated wallets the option of a better experience. A solution is proposed below to standardize payment links that can be embedded in checkout pages to give an 'alternate' representation of the payment method(s) that the merchant is presenting (in addition to e.g., showing the user a visual QR code, or a login button for an eWallet). This can be accomplished by extending the [link data type](https://html.spec.whatwg.org/multipage/links.html#linkTypes) in HTML. Links are used to define relationships between a document and other resources. This explainer proposes adding a new link type, "facilitated-payment", to the HTML specification. The "facilitated-payment" link type would be used to indicate a resource that can be used to make a payment.
 
 \* Pull payments are not in scope for this proposal, but are mentioned to provide clarity on the existing browser solutions for optimizing online checkout experience.
 
@@ -47,18 +49,18 @@ We believe there is benefit for a 'passive' method to allow browsers to detect p
   - Let an open source crypto wallet extension handle a push payment when a supported blockchain's payment QR is displayed on a browser window.
 - The above use cases are applicable for same-device and multi-device scenarios. Assuming the payment clients identify all the devices that belong to the user, they will be able to route the payment details to the right place, where the user can then initiate a payment.
 
-## Proposed solution - "payment" link relationship
-The "payment" link is expected to follow the standard specifications of a [Link](https://www.w3.org/TR/html401/types.html#h-6.12) type with the *rel* attribute set to "payment".
+## Proposed solution - "facilitated-payment" link relationship
+The "facilitated-payment" link is expected to follow the standard specifications of a [Link](https://www.w3.org/TR/html401/types.html#h-6.12) type with the *rel* attribute set to "facilitated-payment".
 ```html
-<link rel=”payment” href="Any URL, where the URL scheme determines the payment method type">
+<link rel=”facilitated-payment” href="Any URL, where the URL scheme determines the payment method type">
 ```
-The merchant or payment processor can embed this link in the relevant payment pages, hence allowing the browser to optimize the payment experience whenever possible. The browser is responsible for detecting the presence of a "payment" link in any page. It then notifies the payment clients that have registered the associated *scheme* for receiving "payment" links. Some basic validations of the URI might be supported but it is the merchant's responsibility to ensure that the URI conforms to the specification associated with the *scheme*.
+The merchant or payment processor can embed this link in the relevant payment pages, hence allowing the browser to optimize the payment experience whenever possible. The browser is responsible for detecting the presence of a "facilitated-payment" link in any page. It then notifies the payment clients that have registered the associated *scheme* for receiving "facilitated-payment" links. Some basic validations of the URI might be supported but it is the merchant's responsibility to ensure that the URI conforms to the specification associated with the *scheme*.
 
-### Possible payment sequence using "payment" link
+### Possible payment sequence using "facilitated-payment" link
 1. User navigates through a checkout flow and selects the push payment method.
 2. The merchant displays the payment page. This page may show a QR code or a login screen depending on the merchant configuration. It's also possible for the payment page to be hosted by a payment processor or an eWallet. In this case, the merchant would have done a redirect.
-3. Browser detects the "payment" link on the page.
-4. Browser notifies the payment clients, passing down the "payment" link.
+3. Browser detects the "facilitated-payment" link on the page.
+4. Browser notifies the payment clients, passing down the "facilitated-payment" link.
 5. The payment client prompts the user to initiate a payment. This can happen on the same device or a different device depending on the payment client capabilities.
 6. The user initiates a push payment on the payment client.
 7. The payment client initiates a payment through the underlying payment processor.
@@ -66,7 +68,7 @@ The merchant or payment processor can embed this link in the relevant payment pa
 
 ![Payment sequence](./docs/images/payment-link-sequence.png)
 
-### Example "payment" links
+### Example "facilitated-payment" links
 The examples listed below are only meant to illustrate the usage of payment links, with the help of some commonly known payment methods. The URI specification for various payment methods is out of scope of this proposal.
 
 #### UPI - Instant payment system based in India
@@ -74,21 +76,21 @@ The examples listed below are only meant to illustrate the usage of payment link
 - Href URI syntax
   - ```upi://pay?param-name=param-value&param-name=param-value&...```
 - Example
-  - ```<link rel=”payment” href=”upi://pay?pa=merchant3@icici&pn=test&am=123&cu=INR”>```
+  - ```<link rel=”facilitated-payment” href=”upi://pay?pa=merchant3@icici&pn=test&am=123&cu=INR”>```
 
-As seen above, the *rel="payment"* attribute indicates that this is a payment link. The scheme, *upi*, along with the host, *pay*, indicates that the payment method is UPI.
+As seen above, the *rel="facilitated-payment"* attribute indicates that this is a payment link. The scheme, *upi*, along with the host, *pay*, indicates that the payment method is UPI.
 
 #### Bitcoin
 - [Specification](https://en.bitcoin.it/wiki/BIP_0021).
 - Href URI syntax
   - ```bitcoin:<payee-address>[?amount=<amount>][?label=<label>][?message=<message>]```
 - Example
-  - ```<link rel=”payment” href=”bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=20.3&label=Walmart”>```
+  - ```<link rel=”facilitated-payment” href=”bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=20.3&label=Walmart”>```
 
 #### eWallets
   - eWallets can define proprietary schemes that can only be processed by them.
   - Example
-    - ```<link rel=”payment” href=”paypal://paypal.com?payee-address=175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W&currency=USD&amount=20.3&payee-name=Walmart”>```
+    - ```<link rel=”facilitated-payment” href=”paypal://paypal.com?payee-address=175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W&currency=USD&amount=20.3&payee-name=Walmart”>```
 
 ## Privacy considerations
 A malicious payment client could use the existence of payment links to track the user. This is an existing concern with e.g., extension based apps (which often ask for permission to view all webpages the user visits), but should be considered for this proposal too.
@@ -96,6 +98,6 @@ A malicious payment client could use the existence of payment links to track the
 Browsers should manage payment clients with care; users should be made aware of the risks and be given control over the payment clients in their browser. Certain privacy savvy users may prefer not to let the payment clients get access to their payment info even if they may not contain any sensitive data. Where appropriate, a browser might consider policies around how a payment client can be integrated with that browser (for example, via apps store policies on platforms that have app stores).
 
 ## Security considerations
-There is a possibility of malicious actors injecting their own "payment" links into web pages and tricking the users into paying them. Standard safety checks done by browsers will offer some level of protection against such attacks. For example, [Safe Browsing](https://safebrowsing.google.com/) feature on Chrome protects the user from known phishing and malware sites. Some additional options that payment clients can consider to mitigate risk are listed below.
+There is a possibility of malicious actors injecting their own "facilitated-payment" links into web pages and tricking the users into paying them. Standard safety checks done by browsers will offer some level of protection against such attacks. For example, [Safe Browsing](https://safebrowsing.google.com/) feature on Chrome protects the user from known phishing and malware sites. Some additional options that payment clients can consider to mitigate risk are listed below.
 - Validate the payment host domain to match against a known list of bad actors.
-- Add backend integrations to evaluate the "payment" link and return information that user can review and confirm before initiating the payment.
+- Add backend integrations to evaluate the "facilitated-payment" link and return information that user can review and confirm before initiating the payment.
