@@ -2,13 +2,13 @@
  <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Payment Link Type in HTML</title>
+  <title>Facilitated Payment Link Type in HTML</title>
   <meta content="UD" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-UD" rel="stylesheet">
   <meta content="Bikeshed version ac5ea272d, updated Fri Dec 6 15:45:15 2024 -0800" name="generator">
   <link href="https://github.com/WICG/paymentlink" rel="canonical">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="a9aff968a07c5a8b98f8ff9edef8d89c6dc600a6" name="revision">
+  <meta content="d45f9c8eec21b399d9aaef3d9c0c5072a3b7e116" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -706,8 +706,8 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
-   <h1 class="p-name no-ref" id="title">Payment Link Type in HTML</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2024-12-20">20 December 2024</time></p>
+   <h1 class="p-name no-ref" id="title">Facilitated Payment Link Type in HTML</h1>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2025-01-13">13 January 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -720,7 +720,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2024 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2025 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/policies/#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/policies/#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/copyright/software-license/" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -737,7 +737,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
    <ol class="toc" role="directory">
     <li><a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
     <li><a href="#definitions"><span class="secno">2</span> <span class="content">Definitions</span></a>
-    <li><a href="#payment-link-type"><span class="secno">3</span> <span class="content">Link type "<span><code>payment</code></span>"</span></a>
+    <li><a href="#facilitated-payment-link-type"><span class="secno">3</span> <span class="content">Link type "<span><code>facilitated-payment</code></span>"</span></a>
     <li><a href="#security-considerations"><span class="secno">4</span> <span class="content">Security Considerations</span></a>
     <li><a href="#privacy-considerations"><span class="secno">5</span> <span class="content">Privacy Considerations</span></a>
     <li>
@@ -762,7 +762,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
    <h2 class="heading settled" data-level="1" id="intro"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#intro"></a></h2>
    <p>Online checkout flows often involve push payments, where the customer initiates the payment based on information provided by the merchant. These push payments can sometimes lead to friction in the user experience, especially when they involve actions like scanning QR codes or navigating to external payment applications.</p>
    <p>User agents, such as web browsers, have the potential to streamline these push payment flows by integrating with payment wallets and providing a more seamless payment experience. However, currently, there is no standardized way for web pages to passively indicate the availability of push payment methods to the user agent.</p>
-   <p>This specification defines a mechanism for web pages to signal the availability of push-based payment methods by using the <code>&lt;link rel="payment"></code> element. This allows user agents to detect supported payment methods and offer users a smoother payment experience by integrating with compatible payment wallets.</p>
+   <p>This specification defines a mechanism for web pages to signal the availability of push-based payment methods by using the <code>&lt;link rel="facilitated-payment"></code> element. This allows user agents to detect supported payment methods and offer users a smoother payment experience by integrating with compatible payment wallets.</p>
    <p>For background information, use cases, and examples, refer to the <a href="https://github.com/WICG/paymentlink/blob/main/README.md">explainer document</a>.</p>
    <h2 class="heading settled" data-level="2" id="definitions"><span class="secno">2. </span><span class="content">Definitions</span><a class="self-link" href="#definitions"></a></h2>
    <p>This specification uses the following terms:</p>
@@ -770,28 +770,28 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
     <li data-md>
      <p><strong>Payment client:</strong> An integrated wallet or a browser wallet extension that is responsible for facilitating payments.</p>
     <li data-md>
-     <p><strong>Payment method:</strong> A specific way of making a payment, such as UPI, Bitcoin, or a particular eWallet. It is identified by the URL <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme">scheme</a> in the <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-href" id="ref-for-attr-link-href">href</a></code> attribute of a <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-payment" id="ref-for-attr-valuedef-link-rel-payment">payment</a></code> link.</p>
+     <p><strong>Payment method:</strong> A specific way of making a payment, such as UPI, Bitcoin, or a particular eWallet. It is identified by the URL <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme">scheme</a> in the <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-href" id="ref-for-attr-link-href">href</a></code> attribute of a <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-facilitated-payment" id="ref-for-attr-valuedef-link-rel-facilitated-payment">facilitated-payment</a></code> link.</p>
    </ul>
-   <h2 class="heading settled" data-level="3" id="payment-link-type"><span class="secno">3. </span><span class="content">Link type "<dfn class="dfn-paneled" data-dfn-for="link/rel" data-dfn-type="attr-value" data-export id="attr-valuedef-link-rel-payment"><code>payment</code></dfn>"</span><a class="self-link" href="#payment-link-type"></a></h2>
-   <p>The <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-payment" id="ref-for-attr-valuedef-link-rel-payment①">payment</a></code> keyword may be used with <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element" id="ref-for-the-link-element①">link</a></code> elements. The keywords creates an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/links.html#external-resource-link" id="ref-for-external-resource-link">external resource link</a>. The keyword is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/links.html#body-ok" id="ref-for-body-ok">body-ok</a>.</p>
-   <p>The <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-payment" id="ref-for-attr-valuedef-link-rel-payment②">payment</a></code> keyword indicates the availability of a push payment method on a web page. It creates a relationship between the document and a payment method resource.</p>
-   <p>There is no default type for resources given by the <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-payment" id="ref-for-attr-valuedef-link-rel-payment③">payment</a></code> keyword.</p>
+   <h2 class="heading settled" data-level="3" id="facilitated-payment-link-type"><span class="secno">3. </span><span class="content">Link type "<dfn class="dfn-paneled" data-dfn-for="link/rel" data-dfn-type="attr-value" data-export id="attr-valuedef-link-rel-facilitated-payment"><code>facilitated-payment</code></dfn>"</span><a class="self-link" href="#facilitated-payment-link-type"></a></h2>
+   <p>The <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-facilitated-payment" id="ref-for-attr-valuedef-link-rel-facilitated-payment①">facilitated-payment</a></code> keyword may be used with <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element" id="ref-for-the-link-element①">link</a></code> elements. The keywords creates an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/links.html#external-resource-link" id="ref-for-external-resource-link">external resource link</a>. The keyword is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/links.html#body-ok" id="ref-for-body-ok">body-ok</a>.</p>
+   <p>The <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-facilitated-payment" id="ref-for-attr-valuedef-link-rel-facilitated-payment②">facilitated-payment</a></code> keyword indicates the availability of a push payment method on a web page. It creates a relationship between the document and a payment method resource.</p>
+   <p>There is no default type for resources given by the <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-facilitated-payment" id="ref-for-attr-valuedef-link-rel-facilitated-payment③">facilitated-payment</a></code> keyword.</p>
    <p>A user agent must not <a href="https://html.spec.whatwg.org/multipage/syntax.html#delay-the-load-event">delay the load event</a> for this link type.</p>
    <p>The URL <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme①">scheme</a> of the <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-href" id="ref-for-attr-link-href①">href</a></code> attribute indicates supported payment methods. The URL may contain additional information specific to the payment method.</p>
    <div class="example no-marker" id="example-upi">
     <a class="self-link" href="#example-upi"></a>
     <div class="marker">EXAMPLE: UPI</div>
-    <p><code class="html">&lt;link rel="payment" href="upi://pay?pa=merchant@bank&amp;pn=Test&amp;am=100&amp;cu=INR"></code></p>
+    <p><code class="html">&lt;link rel="facilitated-payment" href="upi://pay?pa=merchant@bank&amp;pn=Test&amp;am=100&amp;cu=INR"></code></p>
    </div>
    <div class="example no-marker" id="example-bitcoin">
     <a class="self-link" href="#example-bitcoin"></a>
     <div class="marker">EXAMPLE: Bitcoin</div>
-    <p><code class="html">&lt;link rel="payment" href="bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=20.3&amp;label=Donation"></code></p>
+    <p><code class="html">&lt;link rel="facilitated-payment" href="bitcoin:175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W?amount=20.3&amp;label=Donation"></code></p>
    </div>
    <div class="example no-marker" id="example-paypal">
     <a class="self-link" href="#example-paypal"></a>
     <div class="marker">EXAMPLE: PayPal</div>
-    <p><code class="html">&lt;link rel="payment" href="paypal://paypal.com?payee-address=175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W&amp;currency=USD&amp;amount=20.3&amp;payee-name=Walmart"></code></p>
+    <p><code class="html">&lt;link rel="facilitated-payment" href="paypal://paypal.com?payee-address=175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W&amp;currency=USD&amp;amount=20.3&amp;payee-name=Walmart"></code></p>
    </div>
    <p>The appropriate times to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#fetch-and-process-the-linked-resource" id="ref-for-fetch-and-process-the-linked-resource">fetch and process the linked resource</a> for such a link are:</p>
    <ul>
@@ -802,7 +802,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
     <li data-md>
      <p>When the <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-link-href" id="ref-for-attr-link-href②">href</a></code> attribute of the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element" id="ref-for-the-link-element④">link</a></code> element of an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/links.html#external-resource-link" id="ref-for-external-resource-link③">external resource link</a> that is already <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#browsing-context-connected" id="ref-for-browsing-context-connected②">browsing-context connected</a> is changed.</p>
    </ul>
-   <p>The <a href="https://html.spec.whatwg.org/multipage/semantics.html#fetch-and-process-the-linked-resource" id="23c7eb740">fetch and process the linked resource</a> algorithm for <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-payment" id="ref-for-attr-valuedef-link-rel-payment④">payment</a></code> links, given a <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element" id="ref-for-the-link-element⑤">link</a></code> element <var>el</var>, is as follows:</p>
+   <p>The <a href="https://html.spec.whatwg.org/multipage/semantics.html#fetch-and-process-the-linked-resource" id="23c7eb740">fetch and process the linked resource</a> algorithm for <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-facilitated-payment" id="ref-for-attr-valuedef-link-rel-facilitated-payment④">facilitated-payment</a></code> links, given a <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#the-link-element" id="ref-for-the-link-element⑤">link</a></code> element <var>el</var>, is as follows:</p>
    <ol>
     <li data-md>
      <p>If <var>el</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object">relevant settings object</a> is not a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#secure-context" id="ref-for-secure-context">secure context</a>, then return.</p>
@@ -834,8 +834,8 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
      <p>Provide instructions to the user on how to proceed with the payment.</p>
    </ol>
    <h2 class="heading settled" data-level="4" id="security-considerations"><span class="secno">4. </span><span class="content">Security Considerations</span><a class="self-link" href="#security-considerations"></a></h2>
-   <p>There is a possibility of malicious actors injecting their own <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-payment" id="ref-for-attr-valuedef-link-rel-payment⑤">payment</a></code> links into web pages and tricking the users into paying them. Standard safety checks done by browsers will offer some level of protection against such attacks.</p>
-   <p>**Per the algorithm given above, the <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-payment" id="ref-for-attr-valuedef-link-rel-payment⑥">payment</a></code> link needs to be on on a page with the following properties:**</p>
+   <p>There is a possibility of malicious actors injecting their own <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-facilitated-payment" id="ref-for-attr-valuedef-link-rel-facilitated-payment⑤">facilitated-payment</a></code> links into web pages and tricking the users into paying them. Standard safety checks done by browsers will offer some level of protection against such attacks.</p>
+   <p>**Per the algorithm given above, the <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-facilitated-payment" id="ref-for-attr-valuedef-link-rel-facilitated-payment⑥">facilitated-payment</a></code> link needs to be on on a page with the following properties:**</p>
    <ul>
     <li data-md>
      <p>**Cryptographic <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme④">scheme</a> (e.g., HTTPS. One exception being localhost).</p>
@@ -848,11 +848,11 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
     <li data-md>
      <p>**The tab is active.</p>
     <li data-md>
-     <p>**No Permissions-Policy restrictions on the "payments" feature. (i.e., pages can disable <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-payment" id="ref-for-attr-valuedef-link-rel-payment⑦">payment</a></code> links via Permissions-Policy: payment=() HTTP header.)</p>
+     <p>**No Permissions-Policy restrictions on the "payments" feature. (i.e., pages can disable <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-facilitated-payment" id="ref-for-attr-valuedef-link-rel-facilitated-payment⑦">facilitated-payment</a></code> links via Permissions-Policy: payment=() HTTP header.)</p>
    </ul>
-   <p>Also, as mentioned in the previous section, the detected <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-payment" id="ref-for-attr-valuedef-link-rel-payment⑧">payment</a></code> link needs to be validated before further processing.</p>
+   <p>Also, as mentioned in the previous section, the detected <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-facilitated-payment" id="ref-for-attr-valuedef-link-rel-facilitated-payment⑧">facilitated-payment</a></code> link needs to be validated before further processing.</p>
    <h2 class="heading settled" data-level="5" id="privacy-considerations"><span class="secno">5. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy-considerations"></a></h2>
-   <p>A malicious payment client could use the existence of <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-payment" id="ref-for-attr-valuedef-link-rel-payment⑨">payment</a></code> links to track the user. This is an existing concern with e.g., extension based apps (which often ask for permission to view all webpages the user visits), but should be considered for this proposal too.</p>
+   <p>A malicious payment client could use the existence of <code><a data-link-type="attr-value" href="#attr-valuedef-link-rel-facilitated-payment" id="ref-for-attr-valuedef-link-rel-facilitated-payment⑨">facilitated-payment</a></code> links to track the user. This is an existing concern with e.g., extension based apps (which often ask for permission to view all webpages the user visits), but should be considered for this proposal too.</p>
    <p>Browsers should manage payment clients with care; users should be made aware of the risks and be given control over the payment clients in their browser. Certain privacy savvy users may prefer not to let the payment clients get access to their payment info even if they may not contain any sensitive data. Where appropriate, a user agent might consider policies around how a payment client can be integrated with (for example, via apps store policies on platforms that have app stores).</p>
    <p>The user agent should prompt the user before initiating payment. User consent is required every time.</p>
   </main>
@@ -895,7 +895,7 @@ dd:not(:last-child) > .wpt-tests-block:not([open]):last-child {
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#attr-valuedef-link-rel-payment">payment</a><span>, in § 3</span>
+   <li><a href="#attr-valuedef-link-rel-facilitated-payment">facilitated-payment</a><span>, in § 3</span>
   </ul>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
@@ -1146,23 +1146,23 @@ function parseHTML(markup) {
 "use strict";
 {
 let dfnPanelData = {
-"0204d188": {"dfnID":"0204d188","dfnText":"size","external":true,"refSections":[{"refs":[{"id":"ref-for-list-size"}],"title":"3. Link type \"payment\""}],"url":"https://infra.spec.whatwg.org/#list-size"},
-"13dd6cae": {"dfnID":"13dd6cae","dfnText":"node navigable","external":true,"refSections":[{"refs":[{"id":"ref-for-node-navigable"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/document-sequences.html#node-navigable"},
-"15e48c39": {"dfnID":"15e48c39","dfnText":"set","external":true,"refSections":[{"refs":[{"id":"ref-for-ordered-set"}],"title":"3. Link type \"payment\""}],"url":"https://infra.spec.whatwg.org/#ordered-set"},
-"338a25a4": {"dfnID":"338a25a4","dfnText":"external resource link","external":true,"refSections":[{"refs":[{"id":"ref-for-external-resource-link"},{"id":"ref-for-external-resource-link\u2460"},{"id":"ref-for-external-resource-link\u2461"},{"id":"ref-for-external-resource-link\u2462"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/links.html#external-resource-link"},
-"3610bd67": {"dfnID":"3610bd67","dfnText":"allowed to use","external":true,"refSections":[{"refs":[{"id":"ref-for-allowed-to-use"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/iframe-embed-object.html#allowed-to-use"},
-"3a711be7": {"dfnID":"3a711be7","dfnText":"scheme","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-url-scheme"}],"title":"2. Definitions"},{"refs":[{"id":"ref-for-concept-url-scheme\u2460"},{"id":"ref-for-concept-url-scheme\u2461"},{"id":"ref-for-concept-url-scheme\u2462"}],"title":"3. Link type \"payment\""},{"refs":[{"id":"ref-for-concept-url-scheme\u2463"}],"title":"4. Security Considerations"}],"url":"https://url.spec.whatwg.org/#concept-url-scheme"},
-"5216e1a0": {"dfnID":"5216e1a0","dfnText":"node document","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-node-document"},{"id":"ref-for-concept-node-document\u2460"}],"title":"3. Link type \"payment\""}],"url":"https://dom.spec.whatwg.org/#concept-node-document"},
-"65181da8": {"dfnID":"65181da8","dfnText":"secure context","external":true,"refSections":[{"refs":[{"id":"ref-for-secure-context"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#secure-context"},
-"6cfa013d": {"dfnID":"6cfa013d","dfnText":"link","external":true,"refSections":[{"refs":[{"id":"ref-for-the-link-element"}],"title":"Unnumbered Section"},{"refs":[{"id":"ref-for-the-link-element\u2460"},{"id":"ref-for-the-link-element\u2461"},{"id":"ref-for-the-link-element\u2462"},{"id":"ref-for-the-link-element\u2463"},{"id":"ref-for-the-link-element\u2464"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/semantics.html#the-link-element"},
-"9c4c1e66": {"dfnID":"9c4c1e66","dfnText":"relevant settings object","external":true,"refSections":[{"refs":[{"id":"ref-for-relevant-settings-object"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object"},
-"a6078b11": {"dfnID":"a6078b11","dfnText":"href","external":true,"refSections":[{"refs":[{"id":"ref-for-attr-link-href"}],"title":"2. Definitions"},{"refs":[{"id":"ref-for-attr-link-href\u2460"},{"id":"ref-for-attr-link-href\u2461"},{"id":"ref-for-attr-link-href\u2462"},{"id":"ref-for-attr-link-href\u2463"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/semantics.html#attr-link-href"},
-"a8eb91ef": {"dfnID":"a8eb91ef","dfnText":"encoding-parse a URL","external":true,"refSections":[{"refs":[{"id":"ref-for-encoding-parsing-a-url"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/urls-and-fetching.html#encoding-parsing-a-url"},
-"attr-valuedef-link-rel-payment": {"dfnID":"attr-valuedef-link-rel-payment","dfnText":"payment","external":false,"refSections":[{"refs":[{"id":"ref-for-attr-valuedef-link-rel-payment"}],"title":"2. Definitions"},{"refs":[{"id":"ref-for-attr-valuedef-link-rel-payment\u2460"},{"id":"ref-for-attr-valuedef-link-rel-payment\u2461"},{"id":"ref-for-attr-valuedef-link-rel-payment\u2462"},{"id":"ref-for-attr-valuedef-link-rel-payment\u2463"}],"title":"3. Link type \"payment\""},{"refs":[{"id":"ref-for-attr-valuedef-link-rel-payment\u2464"},{"id":"ref-for-attr-valuedef-link-rel-payment\u2465"},{"id":"ref-for-attr-valuedef-link-rel-payment\u2466"},{"id":"ref-for-attr-valuedef-link-rel-payment\u2467"}],"title":"4. Security Considerations"},{"refs":[{"id":"ref-for-attr-valuedef-link-rel-payment\u2468"}],"title":"5. Privacy Considerations"}],"url":"#attr-valuedef-link-rel-payment"},
-"b767a8f2": {"dfnID":"b767a8f2","dfnText":"body-ok","external":true,"refSections":[{"refs":[{"id":"ref-for-body-ok"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/links.html#body-ok"},
-"bd736ec6": {"dfnID":"bd736ec6","dfnText":"top-level traversable","external":true,"refSections":[{"refs":[{"id":"ref-for-top-level-traversable"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable"},
-"e809a09f": {"dfnID":"e809a09f","dfnText":"browsing-context connected","external":true,"refSections":[{"refs":[{"id":"ref-for-browsing-context-connected"},{"id":"ref-for-browsing-context-connected\u2460"},{"id":"ref-for-browsing-context-connected\u2461"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/infrastructure.html#browsing-context-connected"},
-"f98dd553": {"dfnID":"f98dd553","dfnText":"fetch and process the linked resource","external":true,"refSections":[{"refs":[{"id":"ref-for-fetch-and-process-the-linked-resource"},{"id":"23c7eb740"}],"title":"3. Link type \"payment\""}],"url":"https://html.spec.whatwg.org/multipage/semantics.html#fetch-and-process-the-linked-resource"},
+"0204d188": {"dfnID":"0204d188","dfnText":"size","external":true,"refSections":[{"refs":[{"id":"ref-for-list-size"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://infra.spec.whatwg.org/#list-size"},
+"13dd6cae": {"dfnID":"13dd6cae","dfnText":"node navigable","external":true,"refSections":[{"refs":[{"id":"ref-for-node-navigable"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/document-sequences.html#node-navigable"},
+"15e48c39": {"dfnID":"15e48c39","dfnText":"set","external":true,"refSections":[{"refs":[{"id":"ref-for-ordered-set"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://infra.spec.whatwg.org/#ordered-set"},
+"338a25a4": {"dfnID":"338a25a4","dfnText":"external resource link","external":true,"refSections":[{"refs":[{"id":"ref-for-external-resource-link"},{"id":"ref-for-external-resource-link\u2460"},{"id":"ref-for-external-resource-link\u2461"},{"id":"ref-for-external-resource-link\u2462"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/links.html#external-resource-link"},
+"3610bd67": {"dfnID":"3610bd67","dfnText":"allowed to use","external":true,"refSections":[{"refs":[{"id":"ref-for-allowed-to-use"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/iframe-embed-object.html#allowed-to-use"},
+"3a711be7": {"dfnID":"3a711be7","dfnText":"scheme","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-url-scheme"}],"title":"2. Definitions"},{"refs":[{"id":"ref-for-concept-url-scheme\u2460"},{"id":"ref-for-concept-url-scheme\u2461"},{"id":"ref-for-concept-url-scheme\u2462"}],"title":"3. Link type \"facilitated-payment\""},{"refs":[{"id":"ref-for-concept-url-scheme\u2463"}],"title":"4. Security Considerations"}],"url":"https://url.spec.whatwg.org/#concept-url-scheme"},
+"5216e1a0": {"dfnID":"5216e1a0","dfnText":"node document","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-node-document"},{"id":"ref-for-concept-node-document\u2460"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://dom.spec.whatwg.org/#concept-node-document"},
+"65181da8": {"dfnID":"65181da8","dfnText":"secure context","external":true,"refSections":[{"refs":[{"id":"ref-for-secure-context"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#secure-context"},
+"6cfa013d": {"dfnID":"6cfa013d","dfnText":"link","external":true,"refSections":[{"refs":[{"id":"ref-for-the-link-element"}],"title":"Unnumbered Section"},{"refs":[{"id":"ref-for-the-link-element\u2460"},{"id":"ref-for-the-link-element\u2461"},{"id":"ref-for-the-link-element\u2462"},{"id":"ref-for-the-link-element\u2463"},{"id":"ref-for-the-link-element\u2464"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/semantics.html#the-link-element"},
+"9c4c1e66": {"dfnID":"9c4c1e66","dfnText":"relevant settings object","external":true,"refSections":[{"refs":[{"id":"ref-for-relevant-settings-object"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object"},
+"a6078b11": {"dfnID":"a6078b11","dfnText":"href","external":true,"refSections":[{"refs":[{"id":"ref-for-attr-link-href"}],"title":"2. Definitions"},{"refs":[{"id":"ref-for-attr-link-href\u2460"},{"id":"ref-for-attr-link-href\u2461"},{"id":"ref-for-attr-link-href\u2462"},{"id":"ref-for-attr-link-href\u2463"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/semantics.html#attr-link-href"},
+"a8eb91ef": {"dfnID":"a8eb91ef","dfnText":"encoding-parse a URL","external":true,"refSections":[{"refs":[{"id":"ref-for-encoding-parsing-a-url"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/urls-and-fetching.html#encoding-parsing-a-url"},
+"attr-valuedef-link-rel-facilitated-payment": {"dfnID":"attr-valuedef-link-rel-facilitated-payment","dfnText":"facilitated-payment","external":false,"refSections":[{"refs":[{"id":"ref-for-attr-valuedef-link-rel-facilitated-payment"}],"title":"2. Definitions"},{"refs":[{"id":"ref-for-attr-valuedef-link-rel-facilitated-payment\u2460"},{"id":"ref-for-attr-valuedef-link-rel-facilitated-payment\u2461"},{"id":"ref-for-attr-valuedef-link-rel-facilitated-payment\u2462"},{"id":"ref-for-attr-valuedef-link-rel-facilitated-payment\u2463"}],"title":"3. Link type \"facilitated-payment\""},{"refs":[{"id":"ref-for-attr-valuedef-link-rel-facilitated-payment\u2464"},{"id":"ref-for-attr-valuedef-link-rel-facilitated-payment\u2465"},{"id":"ref-for-attr-valuedef-link-rel-facilitated-payment\u2466"},{"id":"ref-for-attr-valuedef-link-rel-facilitated-payment\u2467"}],"title":"4. Security Considerations"},{"refs":[{"id":"ref-for-attr-valuedef-link-rel-facilitated-payment\u2468"}],"title":"5. Privacy Considerations"}],"url":"#attr-valuedef-link-rel-facilitated-payment"},
+"b767a8f2": {"dfnID":"b767a8f2","dfnText":"body-ok","external":true,"refSections":[{"refs":[{"id":"ref-for-body-ok"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/links.html#body-ok"},
+"bd736ec6": {"dfnID":"bd736ec6","dfnText":"top-level traversable","external":true,"refSections":[{"refs":[{"id":"ref-for-top-level-traversable"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable"},
+"e809a09f": {"dfnID":"e809a09f","dfnText":"browsing-context connected","external":true,"refSections":[{"refs":[{"id":"ref-for-browsing-context-connected"},{"id":"ref-for-browsing-context-connected\u2460"},{"id":"ref-for-browsing-context-connected\u2461"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/infrastructure.html#browsing-context-connected"},
+"f98dd553": {"dfnID":"f98dd553","dfnText":"fetch and process the linked resource","external":true,"refSections":[{"refs":[{"id":"ref-for-fetch-and-process-the-linked-resource"},{"id":"23c7eb740"}],"title":"3. Link type \"facilitated-payment\""}],"url":"https://html.spec.whatwg.org/multipage/semantics.html#fetch-and-process-the-linked-resource"},
 };
 
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -1551,7 +1551,7 @@ function genLinkingSyntaxes(dfn) {
 "use strict";
 {
 let refsData = {
-"#attr-valuedef-link-rel-payment": {"displayText":"payment","export":true,"for_":["link/rel"],"level":"1","normative":true,"shortname":"payment-link","spec":"payment-link-1","status":"local","text":"payment","type":"attr-value","url":"#attr-valuedef-link-rel-payment"},
+"#attr-valuedef-link-rel-facilitated-payment": {"displayText":"facilitated-payment","export":true,"for_":["link/rel"],"level":"1","normative":true,"shortname":"payment-link","spec":"payment-link-1","status":"local","text":"facilitated-payment","type":"attr-value","url":"#attr-valuedef-link-rel-facilitated-payment"},
 "https://dom.spec.whatwg.org/#concept-node-document": {"displayText":"node document","export":true,"for_":["Node"],"level":"1","normative":true,"shortname":"dom","spec":"dom","status":"current","text":"node document","type":"dfn","url":"https://dom.spec.whatwg.org/#concept-node-document"},
 "https://html.spec.whatwg.org/multipage/document-sequences.html#node-navigable": {"displayText":"node navigable","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"node navigable","type":"dfn","url":"https://html.spec.whatwg.org/multipage/document-sequences.html#node-navigable"},
 "https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable": {"displayText":"top-level traversable","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"top-level traversable","type":"dfn","url":"https://html.spec.whatwg.org/multipage/document-sequences.html#top-level-traversable"},
