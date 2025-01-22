@@ -1,5 +1,5 @@
 # Support for Facilitated Payment link type in HTML
-Last Update: Jan 13, 2025
+Last Update: Jan 21, 2025
 
 ## Authors:
 - Aneesh Ali Nainamvalappil Cheriyakath
@@ -101,3 +101,6 @@ Browsers should manage payment clients with care; users should be made aware of 
 There is a possibility of malicious actors injecting their own "facilitated-payment" links into web pages and tricking the users into paying them. Standard safety checks done by browsers will offer some level of protection against such attacks. For example, [Safe Browsing](https://safebrowsing.google.com/) feature on Chrome protects the user from known phishing and malware sites. Some additional options that payment clients can consider to mitigate risk are listed below.
 - Validate the payment host domain to match against a known list of bad actors.
 - Add backend integrations to evaluate the "facilitated-payment" link and return information that user can review and confirm before initiating the payment.
+
+## Prior art considerations
+Please refer to [Facilitated Payment link type in HTML Prior Art Considerations](./docs/prior_art_considerations).
