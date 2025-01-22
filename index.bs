@@ -75,7 +75,7 @@ The [fetch and process the linked resource](https://html.spec.whatwg.org/multipa
 
 1. If |el|'s [=relevant settings object=] is not a [=secure context=], then return.
 2. If |el|'s [=node navigable=] is not a [=top-level traversable=], then return.
-3. If |el|’s [=Node/node document=] is not [=allowed to use=] the “payment” feature, then return.
+3. If |el|’s [=Node/node document=] is not [=allowed to use=] the <a permission>payment</a> feature, then return.
 4. If |el|'s <{link/href}> attribute's value is the empty string, then return.
 5. Let |url| be the result of [=encoding-parsing a URL=] given |el|'s <{link/href}> attribute's value, relative to |el|'s [=Node/node document=].
 6. If |url| is failure, then return.
@@ -99,7 +99,7 @@ Per the algorithm given above, the <{link/rel/facilitated-payment}> link needs t
 * No mixed content (i.e., all sub-resources must come from HTTPS).
 * Only on top-level context (not inside of an iframe).
 * The tab is active.
-* No Permissions-Policy restrictions on the "payment" feature. (i.e., pages can disable <{link/rel/facilitated-payment}> links via `Permissions-Policy: payment=()` HTTP header.)
+* No Permissions-Policy restrictions on the <a permission>payment</a> feature. (i.e., pages can disable <{link/rel/facilitated-payment}> links via `Permissions-Policy: payment=()` HTTP header.)
 
 Also, as mentioned in the previous section, the detected <{link/rel/facilitated-payment}> link needs to be validated before further processing.
 
