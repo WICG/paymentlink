@@ -103,4 +103,4 @@ There is a possibility of malicious actors injecting their own "facilitated-paym
 - Add backend integrations to evaluate the "facilitated-payment" link and return information that user can review and confirm before initiating the payment.
 
 ## Prior art considerations
-Please refer to [Facilitated Payment link type in HTML Prior Art Considerations](./docs/prior_art_considerations).
+Please refer to [Facilitated Payment link type in HTML Prior Art Considerations](./docs/prior_art_considerations.md).
