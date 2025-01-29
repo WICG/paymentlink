@@ -102,5 +102,23 @@ There is a possibility of malicious actors injecting their own "facilitated-paym
 - Validate the payment host domain to match against a known list of bad actors.
 - Add backend integrations to evaluate the "facilitated-payment" link and return information that user can review and confirm before initiating the payment.
 
+## Alternatives considered
+This section explores alternative approaches to facilitate push payments in web browsers, along with the rationale for choosing the facilitated payment link type proposal.
+
+### Browser-based QR Code Detection and Parsing
+One alternative considered was to have the browser automatically detect and parse QR codes present on web pages. This approach would leverage image recognition capabilities available in Google Lens. However, this option was not pursued due to the following concerns:
+1. Performance Overhead: Processing every page to identify the existence of QR codes could introduce significant performance overhead, potentially impacting user experience.
+2. Limited Scope: This approach would only address QR code-based payment flows.
+
+### Merchant-Initiated Payment Request API with QR Code Data
+Another alternative was to have merchants integrate a button that triggers the Payment Request API with the QR code data passed as input. While this approach offers a more integrated solution, it relies on merchants actively integrating the button and the Payment Request API, which might not always be feasible or prioritized.
+
+### Rationale for Choosing Facilitated Payment Link Type
+The proposed "facilitated-payment" link relationship was chosen as the preferred solution due to its following advantages:
+1. Lightweight and Efficient: It's a lightweight solution that doesn't require complex image processing or heavy browser modifications.
+2. Broader Scope: It can address various push payment flows, including those that don't involve QR codes.
+3. Passive Integration: It allows for passive integration, meaning merchants can simply add the link to their pages without needing to actively interact with any API.
+4. Complementary to Other Solutions: It can complement other solutions like the Payment Request API, providing a fallback mechanism for merchants who haven't integrated those solutions.
+
 ## Prior art considerations
 Please refer to [Facilitated Payment link type in HTML Prior Art Considerations](./docs/prior_art_considerations.md).
