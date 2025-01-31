@@ -2,8 +2,11 @@
 Last Update: Jan 21, 2025
 
 ## Authors:
+- Junhui He
 - Aneesh Ali Nainamvalappil Cheriyakath
 - Stephen McGruer
+## Contributors:
+- Rouslan Solomakhin
 
 ## Terminology
 ### Push payment - Payment is initiated by the payer (consumer).
