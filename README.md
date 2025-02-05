@@ -106,7 +106,7 @@ There is a possibility of malicious actors injecting their own "facilitated-paym
 This section explores alternative approaches to facilitate push payments in web browsers, along with the rationale for choosing the facilitated payment link type proposal.
 
 ### Browser-based QR Code Detection and Parsing
-One alternative considered was to have the browser automatically detect and parse QR codes present on web pages. This approach would leverage image recognition capabilities available in Google Lens. However, this option was not pursued due to the following concerns:
+One alternative considered was to have the browser automatically detect and parse QR codes present on web pages. This approach would leverage technologies like Google Lens for image recognition. However, this option was not pursued due to the following concerns:
 1. Performance Overhead: Processing every page to identify the existence of QR codes could introduce significant performance overhead, potentially impacting user experience.
 2. Limited Scope: This approach would only address QR code-based payment flows.
 
