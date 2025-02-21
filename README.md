@@ -95,6 +95,8 @@ As seen above, the *rel="facilitated-payment"* attribute indicates that this is 
   - Example
     - ```<link rel=”facilitated-payment” href=”paypal://paypal.com?payee-address=175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W&currency=USD&amount=20.3&payee-name=Walmart”>```
 
+> Non-Normative Note: Chromium plans to accept URLs with non-https schemes of "duitnow", "shopeepay", and "tngd" and forward them via a proprietary protocol to Google Pay. Although this protocol is not standardized, please reach out for conversations to document or standardize this protocol (e.g., via an extension API).
+
 ## Privacy considerations
 A malicious payment client could use the existence of payment links to track the user. This is an existing concern with e.g., extension based apps (which often ask for permission to view all webpages the user visits), but should be considered for this proposal too.
 
