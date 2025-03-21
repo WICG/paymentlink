@@ -18,7 +18,7 @@ along with some open questions that would need to be addressed.
 1. Given a `<link rel="facilitated-payment" href="<scheme>://<host>/<path>?<query>">`
 2. If the `<scheme>` is "https", then:
     1. Construct a PaymentRequest object with parameters:
-        - `supportedInstruments: "<scheme>://<host>/<path>" (e.g., "https://wallet.example/pay")`
+        - `supportedMethods: "<scheme>://<host>/<path>" (e.g., "https://wallet.example/pay")`
         - `data: ConvertQueryToDictionary(<query>)` (to be defined)
     2. The user agent checks [PaymentRequest.canMakePayment()](https://w3c.github.io/payment-request/#canmakepayment-method) for the constructed Payment Request
     3. If true, the user agent displays some UX that lets user trigger the payment handler.
@@ -68,9 +68,15 @@ non-HTTPS schemes: `duitnow`, `shopeepay`, and `tngd`. Some of these are
 be served by multiple independent payment apps.
 
 Handling payment method 'protocols', rather than specific organizations, is a
-problem that Payment Request has discussed historically but never fully solved.
+partially-unsolved problem in Payment Request. The Payment Request API
+specification does support [standardized payment method
+identifiers](https://www.w3.org/TR/payment-method-id/#dfn-standardized-payment-method-identifier),
+which could address the need. However, due to lackof demand, there are no
+standardized payment method identifiers currently defined for protocols. It may
+be that for certain regulated payment ecosystems, standardized payment methods
+could be successful.
 
-In the [Payment Method
+Altenratively, in the [Payment Method
 Manifest](https://www.w3.org/TR/payment-method-manifest/) spec, the
 `supportedOrigins` concept allows a central entity to list supported apps from
 different domains. This could be used for a protocol case, e.g.
@@ -78,10 +84,5 @@ https://upi.example could indicate that Bank1, Bank2, and Bank3 are all allowed
 to handle https://upi.example payments. However this does still require a
 centralized authority (https://upi.example, in this example).
 
-An alternative would be to start specifying new [payment method
-identifiers](https://www.w3.org/TR/payment-method-id/#dfn-pmi) for protocols,
-potentially with protocol-specific logic. This has also been considering
-historically but never implemented due to lack of demand.
-
-Both of these could be used for paylinks, and might also move us away from
-non-HTTPS schemes.
+Both of these approaches could be used for paylinks, and might also move us
+away from non-HTTPS schemes.
