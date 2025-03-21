@@ -4,9 +4,9 @@
   <title>Facilitated Payment Link Type in HTML</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version 97a1608be, updated Mon Feb 3 16:09:34 2025 -0800" name="generator">
+  <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="https://wicg.github.io/paymentlink" rel="canonical">
-  <meta content="ccfb5141624fc9752ce564bdfb7f0bf4949176de" name="revision">
+  <meta content="3a27c5a446a0e283ee2009e3cc73c7dbdc334904" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -568,7 +568,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Facilitated Payment Link Type in HTML</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2025-02-05">5 February 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2025-03-21">21 March 2025</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -661,6 +661,9 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     <div class="marker">EXAMPLE: PayPal</div>
     <p><code class="html">&lt;link rel="facilitated-payment" href="paypal://paypal.com?payee-address=175tWpb8K1S7NmH4Zx6rewF9WQrcZv245W&amp;currency=USD&amp;amount=20.3&amp;payee-name=Walmart"></code></p>
    </div>
+   <blockquote>
+    <p>Non-Normative Note: Chromium plans to accept URLs with non-https schemes of "duitnow", "shopeepay", and "tngd" and forward them via a proprietary protocol to Google Pay. If you’re interested in adding support for these schemes to another browser, or guiding Chromium to connect other schemes to another payment provider (e.g. via an extension API), please reach out to explainer owners by email for connections to document and/or standardize this protocol.</p>
+   </blockquote>
    <p>The appropriate times to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/semantics.html#fetch-and-process-the-linked-resource" id="ref-for-fetch-and-process-the-linked-resource">fetch and process the linked resource</a> for such a link are:</p>
    <ul>
     <li data-md>
@@ -1517,7 +1520,12 @@ function hideRefHint(refHint) {
 function showRefHint(link) {
     if(link.classList.contains("dfn-link")) return;
     const url = link.getAttribute("href");
-    const ref = refsData[url];
+    const refHintKey = link.getAttribute("data-refhint-key");
+    let key = url;
+    if(refHintKey) {
+        key = refHintKey + "_" + url;
+    }
+    const ref = refsData[key];
     if(!ref) return;
 
     hideAllRefHints(); // Only display one at this time.
