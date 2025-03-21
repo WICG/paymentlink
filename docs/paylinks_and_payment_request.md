@@ -71,12 +71,12 @@ Handling payment method 'protocols', rather than specific organizations, is a
 partially-unsolved problem in Payment Request. The Payment Request API
 specification does support [standardized payment method
 identifiers](https://www.w3.org/TR/payment-method-id/#dfn-standardized-payment-method-identifier),
-which could address the need. However, due to lackof demand, there are no
+which could address the need. However, due to lack of demand, there are no
 standardized payment method identifiers currently defined for protocols. It may
 be that for certain regulated payment ecosystems, standardized payment methods
 could be successful.
 
-Altenratively, in the [Payment Method
+Alternatively, in the [Payment Method
 Manifest](https://www.w3.org/TR/payment-method-manifest/) spec, the
 `supportedOrigins` concept allows a central entity to list supported apps from
 different domains. This could be used for a protocol case, e.g.
